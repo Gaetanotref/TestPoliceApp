@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TestPoliceApp</string>
+    <string name="strBtn">Click this button if in danger!</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="danger_text">Are you in DANGER?\n Click here!</string>
+    <string name="warning_text">PLEASE READ!\nWhen you press the button it automatically call the police so be sure to don\'t press it accidentally</string>
+    <string name="Btn_explain">This is the button to press to call the police</string>
+    <string name="textview">sjfkjdsfs</string>
+    <string name="title_activity_settings_number">SettingsNumberActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="EnablePoliceNum">Call police number</string>
+    <string name="choose_text">Choose your text</string>
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="options">Options</string>
+    <string name="Number1">Number 1</string>
+    <string name="Number2">Number 2</string>
+    <string name="Number3">Number 3</string>
+</resources>

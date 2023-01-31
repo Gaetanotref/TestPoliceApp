@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Choose the number">
+
+        <EditTextPreference
+            app:key="number1"
+            app:title="@string/Number1"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="number2"
+            app:title="@string/Number2"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="number3"
+            app:title="@string/Number3"
+            app:useSimpleSummaryProvider="true" />
+
+
+        <EditTextPreference
+            app:key="text"
+            app:title="@string/choose_text"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+        <SwitchPreferenceCompat
+            app:key="enablePoliceCall"
+            android:enabled="true"
+            app:title="@string/EnablePoliceNum" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
