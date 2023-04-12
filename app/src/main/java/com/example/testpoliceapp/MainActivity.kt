@@ -2,11 +2,10 @@ package com.example.testpoliceapp
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
@@ -21,9 +20,9 @@ lateinit var binding: ActivityMainBinding
 lateinit var numberSms1:String
 lateinit var numberSms2:String
 lateinit var numberSms3:String
+var textSms:String = ""
 var isPoliceCallEnabled by Delegates.notNull<Boolean>()
 
-lateinit var textSms:String
 
 
 @Suppress("DEPRECATION")
@@ -34,15 +33,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.btnRedButton.setOnClickListener {
-            if (isPoliceCallEnabled){
-                permissionCall()
-            }
-
             permissionSms(numberSms1, textSms)
             permissionSms(numberSms2, textSms)
             permissionSms(numberSms3, textSms)
+
+            if (isPoliceCallEnabled){
+                permissionCall()
+            }
 
         }
         binding.btnSettings.setOnClickListener {
@@ -51,27 +49,36 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //FUN FOR TAKE VARIABLES FROM SETTINGS ACTIVITY
 
     override fun onResume() {
         super.onResume()
         mySettings()
     }
 
-    fun mySettings(){
+    fun mySettings() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val number1 = prefs.getString("number1","")
-        val number2 = prefs.getString("number2","")
-        val number3 = prefs.getString("number3","")
-        val enablePoliceCall = prefs.getBoolean("enablePoliceCall",true)
+        val number1 = prefs.getString("number1", "")
+        val number2 = prefs.getString("number2", "")
+        val number3 = prefs.getString("number3", "")
+        val enablePoliceCall = prefs.getBoolean("enablePoliceCall", true)
 
 
-        val text = prefs.getString("text","")
+        val text = prefs.getString("text", "")
         binding.apply {
-            numberSms1 = number1.toString()
-            numberSms2 = number2.toString()
-            numberSms3 = number3.toString()
-            textSms= text.toString()
-            isPoliceCallEnabled = enablePoliceCall
+            /*if (Build.VERSION.SDK_INT < 30) {
+                numberSms1 = number1.toString()
+                numberSms2 = number2.toString()
+                numberSms3 = number3.toString()
+                textSms = text.toString()
+                isPoliceCallEnabled = enablePoliceCall
+            } else {*/
+                numberSms1 = "sms:$number1"
+                numberSms2 = "sms:$number2"
+                numberSms3 = "sms:$number3"
+                textSms = text.toString()
+                isPoliceCallEnabled = enablePoliceCall
+            //}
         }
     }
 
@@ -84,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun makePhoneCall() {
-        val phoneNumber = "tel:" + "3452343065" // specifica il numero di telefono
+        val phoneNumber = "tel:" + "112" // specifica il numero di telefono
         val dial = Intent(Intent.ACTION_CALL, Uri.parse(phoneNumber))
         startActivity(dial)
     }
@@ -99,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                 this, Manifest.permission.SEND_SMS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS), 101)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.SEND_SMS), REQUEST_CALL)
         } else {
             sendText(number,text)
         }
