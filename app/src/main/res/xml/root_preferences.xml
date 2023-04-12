@@ -7,7 +7,6 @@
             app:key="number1"
             app:title="@string/Number1"
             app:useSimpleSummaryProvider="true" />
-
         <EditTextPreference
             app:key="number2"
             app:title="@string/Number2"
@@ -30,7 +29,9 @@
         <SwitchPreferenceCompat
             app:key="enablePoliceCall"
             android:enabled="true"
-            app:title="@string/EnablePoliceNum" />
+            app:title="@string/EnablePoliceNum"
+            android:defaultValue="true"
+            />
 
     </PreferenceCategory>
 
